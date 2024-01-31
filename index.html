@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script>
+      function runFunction() {
+        var name = document.getElementById("name").value;
+        var answer = document.getElementById("answer").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("result").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "/stats?a=" + name + "&vs=" + answer, true);
+        xhttp.send();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Player Stats</h1>
+    <p>Player Name:</p>
+    <input type="text" id="name">
+    <p>Opposing Team Abbrev. or Last (Number of Games):</p>
+    <input type="text" id="answer">
+    <button onclick="runFunction()">Search</button>
+    <p id="result"></p>
+  </body>
+</html>
